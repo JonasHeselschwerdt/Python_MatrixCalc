@@ -4,29 +4,29 @@
 
 ~ Saved Matrices ~
 
-   ( a | b | c )
-A= ( d | e | f )
-   ( g | h | i )
+    ( a | b | c )
+A = ( d | e | f )
+    ( g | h | i )
 
-   ( a | b | c )
-B= ( d | e | f )
-   ( g | h | i )
+    ( a | b | c )
+B = ( d | e | f )
+    ( g | h | i )
 
-   ( a | b | c )
-C= ( d | e | f )
-   ( g | h | i )
+    ( a | b | c )
+C = ( d | e | f )
+    ( g | h | i )
 
-     ( a | b | c )
-Ans= ( d | e | f )
-     ( g | h | i )
+      ( a | b | c )
+Ans = ( d | e | f )
+      ( g | h | i )
 
 ~ Calculations ~
 
 Performed Action:
 
-     ( a | b | c )
-Sol= ( d | e | f )
-     ( g | h | i )
+      ( a | b | c )
+Sol = ( d | e | f )
+      ( g | h | i )
 
 Saved Solution into:
 
