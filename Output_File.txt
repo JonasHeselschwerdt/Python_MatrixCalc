@@ -4,9 +4,9 @@
 
 ~ Saved Matrices ~
 
-    ( a | b | c )
-A = ( d | e | f )
-    ( g | h | i )
+    ( a11 | a12 | a13 )
+A = ( a21 | a22 | a23 )
+    ( a31 | a32 | a33 )
 
     ( a | b | c )
 B = ( d | e | f )
