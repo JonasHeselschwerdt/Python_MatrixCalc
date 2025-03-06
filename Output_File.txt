@@ -1,32 +1,32 @@
 ### Python Matrix Calculator ###
 
-### To get started type a command into the console, to open the help menue type "?"
+### To get started type a command into the console, to open the help menue type "?" ###
 
 ~ Saved Matrices ~
 
-    ( a11 | a12 | a13 )
+    ( a11 | a12 | a13 ) 
 A = ( a21 | a22 | a23 )
     ( a31 | a32 | a33 )
 
-    ( a | b | c )
-B = ( d | e | f )
-    ( g | h | i )
+    ( b11 | b12 | b13 )
+B = ( b21 | b22 | b23 )
+    ( b31 | b32 | b33 )
 
-    ( a | b | c )
-C = ( d | e | f )
-    ( g | h | i )
+    ( c11 | c12 | c13 )
+C = ( c21 | c22 | c23 )
+    ( c31 | c32 | c33 )
 
-      ( a | b | c )
-Ans = ( d | e | f )
-      ( g | h | i )
+      ( z11 | z12 | z13 )
+Ans = ( z21 | z22 | z23 )
+      ( z31 | z32 | z33 )
 
 ~ Calculations ~
 
 Performed Action:
 
-      ( a | b | c )
-Sol = ( d | e | f )
-      ( g | h | i )
+      ( s11 | s12 | s13 )
+Sol = ( s21 | s22 | s23 )
+      ( s31 | s32 | s33 )
 
 Saved Solution into:
 
