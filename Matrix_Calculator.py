@@ -1,6 +1,6 @@
 ####################################################################
 ##                                                                ##
-##      Matrixtaschenrechner                                      ##
+##      Matrixtaschenrechner  Protoytp 1.0                        ##
 ##                                                                ##
 ####################################################################
 
@@ -25,19 +25,19 @@
 global matrix_A
 global matrix_B
 global matrix_C
-global matrix_Ans
+#global matrix_Ans
 global matrix_Sol
 
 matrix_A = []
 matrix_B = []
 matrix_C = []
-matrix_Ans = []
+#matrix_Ans = []
 matrix_Sol = []
-
 
 
 template = "Template.txt"
 output_file = "Output_File.txt"  # defines the Template and the Outputfile for the UI
+
 
 ################################################
 ##  UI Refreshing                             ##
@@ -70,6 +70,7 @@ def refreshUI():
         for s in range (3):
             matrix_index = f"s{z+1}{s+1}"
             template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.3f}"))
+
     try:
         with open (output_file,"w",encoding= "utf-8") as refreshed_UI:
             refreshed_UI.write(template_content)
@@ -81,8 +82,6 @@ def introduction():     #introduce the program to the user
     print("It will allow you to to addition, subtraction and multiplication with two matrices.")
     print("Firstly, you can fill in the matrices in the Output_file.txt. You need only to fill the needed matrices.")
     print("If you have done this, choose the operation in console of the proramm.")
-
-introduction()
 
 ####################################################################
 ##  User input extractor                                          ##
@@ -103,6 +102,9 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
         matrix_lines = lines[14:17]
     elif matrixname == "Ans":
         matrix_lines = lines[18:21]  # those are the line numbers of each matrix
+    elif matrixname == "Sol":
+        matrix_lines = lines[26:29]
+        
     else:
         print("Error: No such matrix exists")
         return matrix  # return all zeros if the Matrix does not exist
@@ -175,7 +177,6 @@ def operation():        # the user choose the operation and the matrices
     operation_matrix1()
     operation_matrix2()
 
-operation()
 
 ####################################################################
 ##  calculation                                                   ##
@@ -183,8 +184,11 @@ operation()
 
 
 def calculation(get_calculation):   # choose which function is needed for the operation and execute it
+    global matrix_Ans
     matrix_1 = getMatrix(get_calculation[0])
+  #  matrix_A = getMatrix(get_calculation[0])
     matrix_2 = getMatrix(get_calculation[2])
+ #   matrix_B = getMatrix(get_calculation[2])
     operation = get_calculation[1]
     matrix_Ans = getMatrix("Ans")
     if operation == "*":
@@ -218,4 +222,14 @@ def subtraction(matrix_1,matrix_2): # subtraction of two matrices
         for j in range(3):
             matrix_Ans[i][j] = matrix_1[i][j] - matrix_2[i][j]
 
+introduction()
+global matrix_Ans
+matrix_Ans = getMatrix("Ans")
+matrix_C = getMatrix("C")
+matrix_A = getMatrix("A")
+matrix_B = getMatrix("B")
+matrix_Sol = getMatrix("Sol")
+operation()
 calculation(get_calculation)
+refreshUI()
+
