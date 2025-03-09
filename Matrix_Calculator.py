@@ -7,29 +7,61 @@
 # Authors: Moritz Wagner / Jonas Heselschwerdt
 # Brief: Matrix Calculator for 3x3 Matrices
 
-################################################
-##  Output File Preparation                   ##
-################################################
+###############################################
+##  Variables                                ##
+###############################################
 
-# Note: In this current state the order of the subprograms does not make sense, they must be rearranged later
-# (and put into functions)
+global matrix_A
+global matrix_B
+global matrix_C
+global matrix_Ans
+global matrix_Sol
+
+matrix_A = []
+matrix_B = []
+matrix_C = []
+matrix_Ans = []
+matrix_Sol = []
 
 template = "Template.txt"
 output_file = "Output_File.txt"  # defines the Template and the Outputfile for the UI
 
-"""
-try:
+################################################
+##  UI Refreshing                             ##
+################################################
 
-    with open(template, "r", encoding="utf-8") as template_UI:  # opens Template.txt for reading purposes
-        new_UI = template_UI.read()                             # reads Template.txt and stores it in new_UI
+def refreshUI():
+    try:
+        with open(template, "r", encoding="utf-8") as template_UI:  # opens Template.txt for reading purposes
+            template_content = template_UI.read()                             
+    except:                                            
+        print(f"Error: '{template}' does not exist")       # Prints error message if file does not exist
 
-    with open(output_file, "w", encoding="utf-8") as user_Interface:     # opens Output_File.txt for writing purposes
-        user_Interface.write(new_UI)                                     # writes the content of new_UI into Output_File
+    for z in range (3):
+        for s in range (3):
+            matrix_index = f"a{z+1}{s+1}"
+            template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.3f}"))
+    for z in range (3):
+        for s in range (3):
+            matrix_index = f"b{z+1}{s+1}"
+            template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.3f}"))
+    for z in range (3):
+        for s in range (3):
+            matrix_index = f"c{z+1}{s+1}"
+            template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.3f}"))
+    for z in range (3):
+        for s in range (3):
+            matrix_index = f"z{z+1}{s+1}"
+            template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.3f}"))
+    for z in range (3):
+        for s in range (3):
+            matrix_index = f"s{z+1}{s+1}"
+            template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.3f}"))
+    try:
+        with open (output_file,"w",encoding= "utf-8") as refreshed_UI:
+            refreshed_UI.write(template_content)
+    except: print(f"Error: ' {output_file} ' does not exist")
 
-except:                                            
-    print(f"Fehler: '{template}' wurde nicht gefunden.")       # Prints error message if file does not exist
-
-"""
 #################################################
 ##  User input extractor                       ##
 #################################################
@@ -69,13 +101,9 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
 
     return matrix
 
-
-
-
 get_calculation = ["A", "-", "B"]
 
 def calculation(get_calculation):
-    global matrix_Ans
     matrix_1 = getMatrix(get_calculation[0])
     matrix_2 = getMatrix(get_calculation[2])
     operation = get_calculation[1]
@@ -112,4 +140,3 @@ def subtraction(matrix_1,matrix_2): # subtraction of two matrices
             matrix_Ans[i][j] = matrix_1[i][j] - matrix_2[i][j]
 
 calculation(get_calculation)
-
