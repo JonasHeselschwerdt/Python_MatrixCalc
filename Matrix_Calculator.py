@@ -1,8 +1,8 @@
-################################################
-##                                            ##
-##      Matrixtaschenrechner                  ##
-##                                            ##
-################################################
+####################################################################
+##                                                                ##
+##      Matrixtaschenrechner                                      ##
+##                                                                ##
+####################################################################
 
 # Authors: Moritz Wagner / Jonas Heselschwerdt
 # Brief: Matrix Calculator for 3x3 Matrices
@@ -10,6 +10,17 @@
 ###############################################
 ##  Variables                                ##
 ###############################################
+####################################################################
+##  explanation                                                   ##
+####################################################################
+
+# "not in" checks, if the input is in the list, 
+# seen in the function operation_...() 
+
+
+####################################################################
+##  Output File Preparation                                       ##
+####################################################################
 
 global matrix_A
 global matrix_B
@@ -22,6 +33,8 @@ matrix_B = []
 matrix_C = []
 matrix_Ans = []
 matrix_Sol = []
+
+
 
 template = "Template.txt"
 output_file = "Output_File.txt"  # defines the Template and the Outputfile for the UI
@@ -62,9 +75,18 @@ def refreshUI():
             refreshed_UI.write(template_content)
     except: print(f"Error: ' {output_file} ' does not exist")
 
-#################################################
-##  User input extractor                       ##
-#################################################
+
+def introduction():     #introduce the program to the user
+    print("Welcome, this programm will allow you to do some calculations with 3x3 matrices.")
+    print("It will allow you to to addition, subtraction and multiplication with two matrices.")
+    print("Firstly, you can fill in the matrices in the Output_file.txt. You need only to fill the needed matrices.")
+    print("If you have done this, choose the operation in console of the proramm.")
+
+introduction()
+
+####################################################################
+##  User input extractor                                          ##
+####################################################################
 
 def getMatrix(matrixname):  # is used to extract the matrices the user typed into the UI
 
@@ -101,24 +123,81 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
 
     return matrix
 
-get_calculation = ["A", "-", "B"]
 
-def calculation(get_calculation):
+
+####################################################################
+##  User choose operation and the used matrices                   ##
+####################################################################
+
+
+def operation_operation():  # user chooses the operation
+    print("Which operation you want to do?")
+    status = False
+    while status == False:      # checks if the the input is the expected 
+        get_calculation[1] = input("You can choose between +, - and *: ")
+        if get_calculation[1] not in ["+","-","*"]:
+            print("Error: No operation like this exists")
+            status = False
+        else:
+            status = True
+            print("Your choosen operation is: " + get_calculation[1])
+
+def operation_matrix1(): # user choose the first matrix
+        status = False
+        print("Which matrix do you choose for your operation?")
+        while status == False:
+            get_calculation[0] = input("You can choose between A, B and C: ")
+            if get_calculation[0] not in ["A","B","C"]:     # checks if the the input is the expected
+                print("Error: No matrix like this exists")
+                status = False
+            else: 
+                status = True
+                print("Your first matrix is: " + get_calculation[0])
+
+
+def operation_matrix2(): #user choose the second matrix
+        status = False
+        print("Which is your second matrix, which you choose for your operation?")
+        while status == False:
+            get_calculation[2] = input("You can choose between A, B and C: ")       # checks if the the input is the expected
+            if get_calculation[2] not in ["A","B","C"]:
+                print("Error: No matrix like this exists")
+                status = False
+            else: 
+                status = True
+                print("Your second matrix is: " + get_calculation[2])
+
+def operation():        # the user choose the operation and the matrices
+    global get_calculation
+    print("Matrix Calculator")
+    get_calculation = [0,0,0]
+    operation_operation()
+    operation_matrix1()
+    operation_matrix2()
+
+operation()
+
+####################################################################
+##  calculation                                                   ##
+####################################################################
+
+
+def calculation(get_calculation):   # choose which function is needed for the operation and execute it
     matrix_1 = getMatrix(get_calculation[0])
     matrix_2 = getMatrix(get_calculation[2])
     operation = get_calculation[1]
     matrix_Ans = getMatrix("Ans")
     if operation == "*":
         multiplication(matrix_1, matrix_2)
-        print("multiplication")
+        print("multiplication")         # optional
         print(matrix_Ans)
     if operation == "+":
         addition(matrix_1,matrix_2)
-        print("adddition")
+        print("adddition")              # optional
         print(matrix_Ans)
     if operation == "-":
         subtraction(matrix_1,matrix_2)
-        print("subtraction")
+        print("subtraction")            # optional
         print(matrix_Ans)
 
 def multiplication(matrix_1, matrix_2): # multiplication of two matrices
