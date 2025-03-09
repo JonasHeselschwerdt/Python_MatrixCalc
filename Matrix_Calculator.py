@@ -19,8 +19,17 @@
 ##  Output File Preparation                                       ##
 ####################################################################
 
-# Note: In this current state the order of the subprograms does not make sense, they must be rearranged later
-# (and put into functions)
+global matrix_A
+global matrix_B
+global matrix_C
+global matrix_Ans
+global matrix_Sol
+
+matrix_A = []
+matrix_B = []
+matrix_C = []
+matrix_Ans = []
+matrix_Sol = []
 
 
 
@@ -40,11 +49,13 @@ except:
     print(f"Fehler: '{template}' wurde nicht gefunden.")       # Prints error message if file does not exist
 
 """
+
 def introduction():     #introduce the program to the user
     print("Welcome, this programm will allow you to do some calculations with 3x3 matrices.")
     print("It will allow you to to addition, subtraction and multiplication with two matrices.")
     print("Firstly, you can fill in the matrices in the Output_file.txt. You need only to fill the needed matrices.")
     print("If you have done this, choose the operation in console of the proramm.")
+
 
 introduction()
 
