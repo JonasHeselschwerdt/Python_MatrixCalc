@@ -1,0 +1,33 @@
+### Python Matrix Calculator ###
+
+### To get started type a command into the console, to open the help menue type "?" ###
+
+~ Saved Matrices ~
+
+    (  10.000   |  2.000   |  3.000   ) 
+A = (  4.000   |  5.000   |  6.000   )
+    (  7.000   |  8.200   |  9.000   )
+
+    (  9.000   |  8.000   |  7.000   ) 
+B = (  6.000   |  5.000   |  4.000   )
+    (  3.000   |  2.000   |  1.000   )
+
+    (  -16.000   |  -12.000   |  -8.000   ) 
+C = (  -4.000   |  0.000   |  4.000   )
+    (  8.000   |  12.000   |  16.000   )
+
+      (  -6.000   |  -10.000   |  -5.000   ) 
+Ans = (  0.000   |  5.000   |  10.000   )
+      (  15.000   |  20.200   |  25.000   )
+
+~ Calculations ~
+
+Performed Action: A + C
+
+      (  -6.000   |  -10.000   |  -5.000   ) 
+Sol = (  0.000   |  5.000   |  10.000   )
+      (  15.000   |  20.200   |  25.000   )
+
+Saved Solution into: Ans
+
+### Python Matrix Calculator ###

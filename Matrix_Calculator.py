@@ -31,6 +31,8 @@ global matrix_C
 global matrix_Ans
 global matrix_Sol
 
+det_A, det_B, det_C, det_Ans, det_Sol = 0, 0 ,0 ,0, 0
+
 matrix_A = []
 matrix_B = []
 matrix_C = []
@@ -142,6 +144,17 @@ def subtraction(operand_1,operand_2): # subtraction of two matrices
             matrix_Sol[i][j] = operand_1[i][j] - operand_2[i][j]  # the Solution is always stored in Matrix_Sol
 
 
+def determinant():
+    det_matrices = [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]
+    det = [det_A, det_B, det_C, det_Ans, det_Sol]
+    for i in range(5):
+        det[i] = det_matrices[i][0][0] * det_matrices[i][1][1] * det_matrices[i][2][2] + det_matrices[i][0][1] * det_matrices[i][1][2] * det_matrices[i][2][0] + det_matrices[i][0][2] * det_matrices[i][1][0] * det_matrices[i][2][1] - det_matrices[i][0][2] * det_matrices[i][1][1] * det_matrices[i][2][0] - det_matrices[i][0][1] * det_matrices[i][1][0] * det_matrices[i][2][2] - det_matrices[i][0][0] * det_matrices[i][1][2] * det_matrices[i][2][1]
+        print(det[i])
+    return det
+
+
+
+
 ####################################################################
 ##  Matrix input extractor                                        ##
 ####################################################################
@@ -196,14 +209,37 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
 # here we ask the user what calculation he wants to perform, and return all the needed information as a list
 
 def getUserInput():
-
     userInput = [0,0,0,0]
-    userInput[0] = input("Which Operator do you want to use? Type '?' to open the help menue! ")
-    userInput[1] = input("What is the first Operand? ")
-    userInput[2] = input("What is the second Operand? ")
-    userInput[3] = input("Where do you want to save the solution? (If you type nothing Ans will be used to save the Solution)  ")
-
+    
+    status = [False,False,False,False]
+    while not all(status):
+        if status[0] == False:
+            userInput[0] = input("Which Operator do you want to use? Type '?' to open the help menue! You can choose between +, - and *: ")
+            if userInput[0] not in ["+","-","*"]:
+                print("Error: No Operator like this exists")
+            else:
+                status[0] = True
+        if status[1] == False:
+            userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
+            if userInput[1] not in ["A","B","C"]:
+                print("Error: No Operand like this exists")
+            else:
+                status[1] = True
+        if status[2] == False:
+            userInput[2] = input("What is the second Operand? You can choose between A, B, C: ")
+            if userInput[2] not in ["A","B","C"]:
+                print("Error: No Operand like this exists")
+            else:
+                status[2] = True
+        if status[3] == False:
+            userInput[3] = input("Where do you want to save the solution? You can choose between A, B, C, Ans: ")
+            if userInput[3] not in ["A","B","C","Ans",""]:
+                print("Error: No Operand like this exists")
+                print("If you type nothing Ans will be used to save the Solution")
+            else:
+                status[3] = True
     return userInput
+
 
     # this function asks the user about what calculation to perform and returns it a list containing all the
     # needed information
@@ -250,7 +286,7 @@ else:
 
 calculate(matrix_Operand_1,matrix_Operand_2,operator)  # perform the calculation by giving the calculate function 
                                                        # the two operands ant the operator
-
+                                                       
 if saved_in == "A":
     matrix_A = matrix_Sol
 elif saved_in == "B":
