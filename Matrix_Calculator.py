@@ -71,26 +71,138 @@ def refreshUI():
     for z in range (3):
         for s in range (3):
             matrix_index = f"a{z+1}{s+1}"
-            template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.3f}"))
+
+            # Autoscaling:
+
+            if abs(matrix_A[z][s]) >= 1000:
+                digits = 4
+            elif abs(matrix_A[z][s]) >= 100:
+                digits = 3
+            elif abs(matrix_A[z][s]) >= 10:
+                digits = 2
+            else:
+                digits = 1
+         
+            if matrix_A[z][s] >= 0:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_A[z][s]:.{4-digits}f}"))
+                else:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_A[z][s]:.{4-digits}f} "))                    
+            else:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f}"))
+                else: 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f} "))                   
+
     for z in range (3):
         for s in range (3):
             matrix_index = f"b{z+1}{s+1}"
-            template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.3f}"))
+
+            # Autoscaling:
+            
+            if abs(matrix_B[z][s]) >= 1000:
+                digits = 4
+            elif abs(matrix_B[z][s]) >= 100:
+                digits = 3
+            elif abs(matrix_B[z][s]) >= 10:
+                digits = 2
+            else:
+                digits = 1
+         
+            if matrix_B[z][s] >= 0:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_B[z][s]:.{4-digits}f}"))
+                else:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_B[z][s]:.{4-digits}f} "))                    
+            else:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f}"))
+                else: 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f} ")) 
+
     for z in range (3):
         for s in range (3):
             matrix_index = f"c{z+1}{s+1}"
-            template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.3f}"))
+
+            # Autoscaling:
+            
+            if abs(matrix_C[z][s]) >= 1000:
+                digits = 4
+            elif abs(matrix_C[z][s]) >= 100:
+                digits = 3
+            elif abs(matrix_C[z][s]) >= 10:
+                digits = 2
+            else:
+                digits = 1
+         
+            if matrix_C[z][s] >= 0:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_C[z][s]:.{4-digits}f}"))
+                else:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_C[z][s]:.{4-digits}f} "))                    
+            else:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f}"))
+                else: 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f} ")) 
+
     for z in range (3):
         for s in range (3):
             matrix_index = f"z{z+1}{s+1}"
-            template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.3f}"))
+
+            # Autoscaling:
+            
+            if abs(matrix_Ans[z][s]) >= 1000:
+                digits = 4
+            elif abs(matrix_Ans[z][s]) >= 100:
+                digits = 3
+            elif abs(matrix_Ans[z][s]) >= 10:
+                digits = 2
+            else:
+                digits = 1
+         
+            if matrix_Ans[z][s] >= 0:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_Ans[z][s]:.{4-digits}f}"))
+                else:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_Ans[z][s]:.{4-digits}f} "))                    
+            else:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.{4-digits}f}"))
+                else: 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.{4-digits}f} ")) 
+
     for z in range (3):
         for s in range (3):
             matrix_index = f"s{z+1}{s+1}"
-            template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.3f}"))
+
+            # Autoscaling:
+            
+            if abs(matrix_Sol[z][s]) >= 1000:
+                digits = 4
+            elif abs(matrix_Sol[z][s]) >= 100:
+                digits = 3
+            elif abs(matrix_Sol[z][s]) >= 10:
+                digits = 2
+            else:
+                digits = 1
+         
+            if matrix_Sol[z][s] >= 0:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_Sol[z][s]:.{4-digits}f}"))
+                else:
+                    template_content = template_content.replace(matrix_index, str(f" {matrix_Sol[z][s]:.{4-digits}f} "))                    
+            else:
+                if digits != 4:
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.{4-digits}f}"))
+                else: 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.{4-digits}f} ")) 
 
     # the above for loops systematically loop through all of the placeholders in template.txt and replace the 
     # placeholders with the values calculated (placeholders like a11 -> a33, b11 -> b33 etc.)
+    # we check how many decimal places the values have and if they are negative, this
+    # information is used to autoscale the matrices nicely
+    # this works for numbers up to 9999
     
     template_content = template_content.replace("ACTION",calculated)
     template_content = template_content.replace("Svd",matrix_saved_in)  # the performed calculation and matrix_saved_in
@@ -149,9 +261,6 @@ def determinant():
     det = [det_A, det_B, det_C, det_Ans, det_Sol]
     for i in range(5):
         det[i] = det_matrices[i][0][0] * det_matrices[i][1][1] * det_matrices[i][2][2] + det_matrices[i][0][1] * det_matrices[i][1][2] * det_matrices[i][2][0] + det_matrices[i][0][2] * det_matrices[i][1][0] * det_matrices[i][2][1] - det_matrices[i][0][2] * det_matrices[i][1][1] * det_matrices[i][2][0] - det_matrices[i][0][1] * det_matrices[i][1][0] * det_matrices[i][2][2] - det_matrices[i][0][0] * det_matrices[i][1][2] * det_matrices[i][2][1]
-        print(det[i])
-    return det
-
 
 
 
@@ -262,6 +371,7 @@ matrix_C = getMatrix("C")
 matrix_Ans = getMatrix("Ans")
 matrix_Sol = getMatrix("Sol")    # acquire the matrices the user typed in
 
+
 if op_1 == "A":
     matrix_Operand_1 = matrix_A
 elif op_1 == "B":
@@ -286,7 +396,7 @@ else:
 
 calculate(matrix_Operand_1,matrix_Operand_2,operator)  # perform the calculation by giving the calculate function 
                                                        # the two operands ant the operator
-                                                       
+                                                      
 if saved_in == "A":
     matrix_A = matrix_Sol
 elif saved_in == "B":
@@ -297,6 +407,8 @@ else:
     matrix_Ans = matrix_Sol     # copy the solution (always stored in matrix_Solution) into the matrix the user defined
                                 # if the user didnt specify the matrix where the solution goes, matrix_Ans will 
                                 # be used by default
+
+determinant()
 
 calculated = op_1 + " " + operator + " " + op_2
 matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
