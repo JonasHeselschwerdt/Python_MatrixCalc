@@ -236,6 +236,10 @@ def calculate(operand_1,operand_2,operator):   # chooses which function is neede
     if operator == "i":
         invert(operand_1)
 
+    if operator == "t":
+        transpose(operand_1,matrix_Sol)
+    
+
 
 def multiplication(operand_1, operand_2): # multiplication of two matrices
 
@@ -285,7 +289,14 @@ def invert(operand_1):
         matrix_Sol[2][0] = ((operand_1[1][0] * operand_1[2][1]) - (operand_1[1][1] * operand_1[2][0])) / determinant_operand
         matrix_Sol[2][1] = ((operand_1[0][1] * operand_1[2][0]) - (operand_1[0][0] * operand_1[2][1])) / determinant_operand
         matrix_Sol[2][2] = ((operand_1[0][0] * operand_1[1][1]) - (operand_1[0][1] * operand_1[1][0])) / determinant_operand
+    else:
+        print("Error: Matrix is not invertible")
+        print("The calculation was canceled!")
 
+def transpose(matrix_Operand_1,matrix_Sol):
+    for i in range(3):
+        for j in range(3):
+            matrix_Sol[i][j] = matrix_Operand_1[j][i]
 
 ####################################################################
 ##  Matrix input extractor                                        ##
@@ -345,18 +356,29 @@ def getUserInput():
     
     status = [False,False,False,False]
     while not all(status):
-        if status[0] == False:
-            userInput[0] = input("Which Operator do you want to use? Type '?' to open the help menue! You can choose between +, - and *: ")
-            if userInput[0] not in ["+","-","*","i"]:
-                print("Error: No Operator like this exists")
-            else:
-                status[0] = True
         if status[1] == False:
+            print("Type '?' to open the help menue!")
             userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
-            if userInput[1] not in ["A","B","C"]:
+            if userInput[1] not in ["A","B","C","?"]:
                 print("Error: No Operand like this exists")
+            elif userInput[1] == "?":
+                print("Help Menue:")
+                print("Firstly you have to open the Output_File.txt to see the User Interface. There you can add the Matrices you want to calculate with.")
+                print("Possible Operands are A, B and C. As Operators you can choose between + (addition), - (subtraction), * (multiplication), i (inverse), t (transpose)")
+                print("After you have choosen your operation you can choose the point where you want to save the solution. Possible are the Matrices A, B, C and Ans.")
+                reset = input("If have read the Help Menue and want to continue press: Enter")
+                status = [False,False,False,False]
             else:
                 status[1] = True
+        if status[0] == False:
+            userInput[0] = input("Which Operator do you want to use? You can choose between +, -, *, i, t and ?: ")
+            if userInput[0] not in ["+","-","*","i","t","?"]:
+                print("Error: No Operator like this exists")
+            elif userInput[0] in ["i","t"]:
+                    status[0] = True
+                    status[2] = True
+            else:
+                status[0] = True
         if status[2] == False:
             userInput[2] = input("What is the second Operand? You can choose between A, B, C: ")
             if userInput[2] not in ["A","B","C"]:
@@ -436,9 +458,15 @@ det_C = determinant()[2]
 det_Ans = determinant()[3]
 det_Sol = determinant()[4]
 
-
-calculated = op_1 + " " + operator + " " + op_2
-matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
+if operator not in ["i", "t"]:
+    calculated = op_1 + " " + operator + " " + op_2
+    matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
                               # where the solution has been saved
+elif operator == "i":
+    calculated = "inverse(" + op_1 + ")"
+    matrix_saved_in = saved_in
+elif operator == "t":
+    calculated = "transpose(" + op_1 + ")"
+    matrix_saved_in = saved_in
 
 refreshUI()   # as the last step of the program everything will be displayed  for the user in Output_File.txt
