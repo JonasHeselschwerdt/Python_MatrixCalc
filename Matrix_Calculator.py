@@ -31,6 +31,8 @@ global matrix_C
 global matrix_Ans
 global matrix_Sol
 
+global det_A, det_B, det_C, det_Ans, det_Sol
+
 det_A, det_B, det_C, det_Ans, det_Sol = 0, 0 ,0 ,0, 0
 
 matrix_A = []
@@ -207,6 +209,11 @@ def refreshUI():
     template_content = template_content.replace("ACTION",calculated)
     template_content = template_content.replace("Svd",matrix_saved_in)  # the performed calculation and matrix_saved_in
                                                                         # are displayed for the user in the UI
+    template_content = template_content.replace("DETA",str(det_A))
+    template_content = template_content.replace("DETB",str(det_B))
+    template_content = template_content.replace("DETC",str(det_C))
+    template_content = template_content.replace("DETZ",str(det_Ans))
+    template_content = template_content.replace("DETSOL",str(det_Sol))
 
     try:
         with open (output_file,"w",encoding= "utf-8") as refreshed_UI:
@@ -261,7 +268,7 @@ def determinant():
     det = [det_A, det_B, det_C, det_Ans, det_Sol]
     for i in range(5):
         det[i] = det_matrices[i][0][0] * det_matrices[i][1][1] * det_matrices[i][2][2] + det_matrices[i][0][1] * det_matrices[i][1][2] * det_matrices[i][2][0] + det_matrices[i][0][2] * det_matrices[i][1][0] * det_matrices[i][2][1] - det_matrices[i][0][2] * det_matrices[i][1][1] * det_matrices[i][2][0] - det_matrices[i][0][1] * det_matrices[i][1][0] * det_matrices[i][2][2] - det_matrices[i][0][0] * det_matrices[i][1][2] * det_matrices[i][2][1]
-
+    return det
 
 
 ####################################################################
@@ -408,7 +415,12 @@ else:
                                 # if the user didnt specify the matrix where the solution goes, matrix_Ans will 
                                 # be used by default
 
-determinant()
+det_A = determinant()[0]
+det_B = determinant()[1]
+det_C = determinant()[2]
+det_Ans = determinant()[3]
+det_Sol = determinant()[4]
+
 
 calculated = op_1 + " " + operator + " " + op_2
 matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
