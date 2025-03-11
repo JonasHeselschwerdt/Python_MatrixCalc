@@ -74,8 +74,6 @@ def refreshUI():
         for s in range (3):
             matrix_index = f"a{z+1}{s+1}"
 
-            # Autoscaling:
-
             if abs(matrix_A[z][s]) >= 1000:
                 digits = 4
             elif abs(matrix_A[z][s]) >= 100:
@@ -91,17 +89,15 @@ def refreshUI():
                 else:
                     template_content = template_content.replace(matrix_index, str(f" {matrix_A[z][s]:.{4-digits}f} "))                    
             else:
-                if digits != 4:
+                if digits != 4:     
                     template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f}"))
                 else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f} "))                   
-
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f} "))    
+                         
     for z in range (3):
         for s in range (3):
             matrix_index = f"b{z+1}{s+1}"
 
-            # Autoscaling:
-            
             if abs(matrix_B[z][s]) >= 1000:
                 digits = 4
             elif abs(matrix_B[z][s]) >= 100:
@@ -120,14 +116,12 @@ def refreshUI():
                 if digits != 4:
                     template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f}"))
                 else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f} ")) 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f} "))
 
     for z in range (3):
         for s in range (3):
             matrix_index = f"c{z+1}{s+1}"
 
-            # Autoscaling:
-            
             if abs(matrix_C[z][s]) >= 1000:
                 digits = 4
             elif abs(matrix_C[z][s]) >= 100:
@@ -146,14 +140,12 @@ def refreshUI():
                 if digits != 4:
                     template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f}"))
                 else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f} ")) 
+                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f} "))
 
     for z in range (3):
         for s in range (3):
             matrix_index = f"z{z+1}{s+1}"
 
-            # Autoscaling:
-            
             if abs(matrix_Ans[z][s]) >= 1000:
                 digits = 4
             elif abs(matrix_Ans[z][s]) >= 100:
@@ -174,12 +166,11 @@ def refreshUI():
                 else: 
                     template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.{4-digits}f} ")) 
 
+
     for z in range (3):
         for s in range (3):
             matrix_index = f"s{z+1}{s+1}"
 
-            # Autoscaling:
-            
             if abs(matrix_Sol[z][s]) >= 1000:
                 digits = 4
             elif abs(matrix_Sol[z][s]) >= 100:
@@ -219,7 +210,7 @@ def refreshUI():
         with open (output_file,"w",encoding= "utf-8") as refreshed_UI:
             refreshed_UI.write(template_content)
     except: print(f"Error: ' {output_file} ' does not exist")  # here we overwrite what is in Output_File.txt with the
-                                                               # modified Template
+                                                               # modified Template                  
 
 
 ####################################################################
@@ -241,6 +232,9 @@ def calculate(operand_1,operand_2,operator):   # chooses which function is neede
  
     if operator == "-":
         subtraction(operand_1,operand_2)
+
+    if operator == "i":
+        invert(operand_1)
 
 
 def multiplication(operand_1, operand_2): # multiplication of two matrices
@@ -269,6 +263,28 @@ def determinant():
     for i in range(5):
         det[i] = det_matrices[i][0][0] * det_matrices[i][1][1] * det_matrices[i][2][2] + det_matrices[i][0][1] * det_matrices[i][1][2] * det_matrices[i][2][0] + det_matrices[i][0][2] * det_matrices[i][1][0] * det_matrices[i][2][1] - det_matrices[i][0][2] * det_matrices[i][1][1] * det_matrices[i][2][0] - det_matrices[i][0][1] * det_matrices[i][1][0] * det_matrices[i][2][2] - det_matrices[i][0][0] * det_matrices[i][1][2] * det_matrices[i][2][1]
     return det
+
+def invert(operand_1):
+
+    if operand_1 == matrix_A:
+        determinant_operand = determinant()[0]
+    elif operand_1 == matrix_B:
+        determinant_operand = determinant()[1] 
+    elif operand_1 == matrix_C:
+        determinant_operand = determinant()[2]
+    elif operand_1 == matrix_Ans:
+        determinant_operand = determinant()[3]  
+    
+    if determinant_operand != 0:
+        matrix_Sol[0][0] = ((operand_1[1][1] * operand_1[2][2]) - (operand_1[1][2] * operand_1[2][1])) / determinant_operand
+        matrix_Sol[0][1] = ((operand_1[0][2] * operand_1[2][1]) - (operand_1[0][1] * operand_1[2][2])) / determinant_operand
+        matrix_Sol[0][2] = ((operand_1[0][1] * operand_1[1][2]) - (operand_1[0][2] * operand_1[1][1])) / determinant_operand
+        matrix_Sol[1][0] = ((operand_1[1][2] * operand_1[2][0]) - (operand_1[1][0] * operand_1[2][2])) / determinant_operand
+        matrix_Sol[1][1] = ((operand_1[0][0] * operand_1[2][2]) - (operand_1[0][2] * operand_1[2][0])) / determinant_operand
+        matrix_Sol[1][2] = ((operand_1[0][2] * operand_1[1][0]) - (operand_1[0][0] * operand_1[1][2])) / determinant_operand
+        matrix_Sol[2][0] = ((operand_1[1][0] * operand_1[2][1]) - (operand_1[1][1] * operand_1[2][0])) / determinant_operand
+        matrix_Sol[2][1] = ((operand_1[0][1] * operand_1[2][0]) - (operand_1[0][0] * operand_1[2][1])) / determinant_operand
+        matrix_Sol[2][2] = ((operand_1[0][0] * operand_1[1][1]) - (operand_1[0][1] * operand_1[1][0])) / determinant_operand
 
 
 ####################################################################
@@ -331,7 +347,7 @@ def getUserInput():
     while not all(status):
         if status[0] == False:
             userInput[0] = input("Which Operator do you want to use? Type '?' to open the help menue! You can choose between +, - and *: ")
-            if userInput[0] not in ["+","-","*"]:
+            if userInput[0] not in ["+","-","*","i"]:
                 print("Error: No Operator like this exists")
             else:
                 status[0] = True
@@ -377,7 +393,6 @@ matrix_B = getMatrix("B")
 matrix_C = getMatrix("C")
 matrix_Ans = getMatrix("Ans")
 matrix_Sol = getMatrix("Sol")    # acquire the matrices the user typed in
-
 
 if op_1 == "A":
     matrix_Operand_1 = matrix_A
