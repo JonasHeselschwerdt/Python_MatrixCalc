@@ -69,127 +69,32 @@ def refreshUI():
             template_content = template_UI.read()                             
     except:                                            
         print(f"Error: '{template}' does not exist")       # Prints error message if file does not exist
-
-    for z in range (3):
-        for s in range (3):
-            matrix_index = f"a{z+1}{s+1}"
-
-            if abs(matrix_A[z][s]) >= 1000:
-                digits = 4
-            elif abs(matrix_A[z][s]) >= 100:
-                digits = 3
-            elif abs(matrix_A[z][s]) >= 10:
-                digits = 2
-            else:
-                digits = 1
-         
-            if matrix_A[z][s] >= 0:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_A[z][s]:.{4-digits}f}"))
+# test
+    for i in range(5):
+        letters = ["a","b","c","z","s"]
+        matrices = [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]
+        for j in range (3):
+            for k in range (3):
+                matrix_index = f"{letters[i]}{j+1}{k+1}"
+                if abs(matrices[i][j][k]) >= 1000:
+                    digits = 4
+                elif abs(matrices[i][j][k]) >= 100:
+                    digits = 3
+                elif abs(matrices[i][j][k]) >= 10:
+                    digits = 2
                 else:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_A[z][s]:.{4-digits}f} "))                    
-            else:
-                if digits != 4:     
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f}"))
-                else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_A[z][s]:.{4-digits}f} "))    
-                         
-    for z in range (3):
-        for s in range (3):
-            matrix_index = f"b{z+1}{s+1}"
-
-            if abs(matrix_B[z][s]) >= 1000:
-                digits = 4
-            elif abs(matrix_B[z][s]) >= 100:
-                digits = 3
-            elif abs(matrix_B[z][s]) >= 10:
-                digits = 2
-            else:
-                digits = 1
-         
-            if matrix_B[z][s] >= 0:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_B[z][s]:.{4-digits}f}"))
+                    digits = 1
+            
+                if matrices[i][j][k] >= 0:
+                    if digits != 4:
+                        template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f}"))
+                    else:
+                        template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f} "))                    
                 else:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_B[z][s]:.{4-digits}f} "))                    
-            else:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f}"))
-                else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_B[z][s]:.{4-digits}f} "))
-
-    for z in range (3):
-        for s in range (3):
-            matrix_index = f"c{z+1}{s+1}"
-
-            if abs(matrix_C[z][s]) >= 1000:
-                digits = 4
-            elif abs(matrix_C[z][s]) >= 100:
-                digits = 3
-            elif abs(matrix_C[z][s]) >= 10:
-                digits = 2
-            else:
-                digits = 1
-         
-            if matrix_C[z][s] >= 0:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_C[z][s]:.{4-digits}f}"))
-                else:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_C[z][s]:.{4-digits}f} "))                    
-            else:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f}"))
-                else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_C[z][s]:.{4-digits}f} "))
-
-    for z in range (3):
-        for s in range (3):
-            matrix_index = f"z{z+1}{s+1}"
-
-            if abs(matrix_Ans[z][s]) >= 1000:
-                digits = 4
-            elif abs(matrix_Ans[z][s]) >= 100:
-                digits = 3
-            elif abs(matrix_Ans[z][s]) >= 10:
-                digits = 2
-            else:
-                digits = 1
-         
-            if matrix_Ans[z][s] >= 0:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_Ans[z][s]:.{4-digits}f}"))
-                else:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_Ans[z][s]:.{4-digits}f} "))                    
-            else:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.{4-digits}f}"))
-                else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_Ans[z][s]:.{4-digits}f} ")) 
-
-
-    for z in range (3):
-        for s in range (3):
-            matrix_index = f"s{z+1}{s+1}"
-
-            if abs(matrix_Sol[z][s]) >= 1000:
-                digits = 4
-            elif abs(matrix_Sol[z][s]) >= 100:
-                digits = 3
-            elif abs(matrix_Sol[z][s]) >= 10:
-                digits = 2
-            else:
-                digits = 1
-         
-            if matrix_Sol[z][s] >= 0:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_Sol[z][s]:.{4-digits}f}"))
-                else:
-                    template_content = template_content.replace(matrix_index, str(f" {matrix_Sol[z][s]:.{4-digits}f} "))                    
-            else:
-                if digits != 4:
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.{4-digits}f}"))
-                else: 
-                    template_content = template_content.replace(matrix_index, str(f"{matrix_Sol[z][s]:.{4-digits}f} ")) 
+                    if digits != 4:     
+                        template_content = template_content.replace(matrix_index, str(f"{matrices[i][j][k]:.{4-digits}f}"))
+                    else: 
+                        template_content = template_content.replace(matrix_index, str(f"{matrices[i][j][k]:.{4-digits}f} "))
 
     # the above for loops systematically loop through all of the placeholders in template.txt and replace the 
     # placeholders with the values calculated (placeholders like a11 -> a33, b11 -> b33 etc.)
@@ -371,7 +276,7 @@ def getUserInput():
             else:
                 status[1] = True
         if status[0] == False:
-            userInput[0] = input("Which Operator do you want to use? You can choose between +, -, *, i, t and ?: ")
+            userInput[0] = input("Which Operator do you want to use? You can choose between +, -, *, i and t: ")
             if userInput[0] not in ["+","-","*","i","t"]:
                 print("Error: No Operator like this exists")
             elif userInput[0] in ["i","t"]:
