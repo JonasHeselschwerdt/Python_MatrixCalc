@@ -372,7 +372,7 @@ def getUserInput():
                 status[1] = True
         if status[0] == False:
             userInput[0] = input("Which Operator do you want to use? You can choose between +, -, *, i, t and ?: ")
-            if userInput[0] not in ["+","-","*","i","t","?"]:
+            if userInput[0] not in ["+","-","*","i","t"]:
                 print("Error: No Operator like this exists")
             elif userInput[0] in ["i","t"]:
                     status[0] = True
