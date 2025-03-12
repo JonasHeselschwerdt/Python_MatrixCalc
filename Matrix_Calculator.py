@@ -1,27 +1,26 @@
 ####################################################################
 ##                                                                ##
-##      Matrixtaschenrechner                                      ##
+##      3x3 Matrixcalculator                                      ##
 ##                                                                ##
 ####################################################################
 
 # Authors: Moritz Wagner / Jonas Heselschwerdt
 # Brief: Matrix Calculator for 3x3 Matrices
 
-##############################################################
-## Important Notes about this version                       ##
-##############################################################
 
-# This is the first version of the final product. It has all the basic functions we 
-# envisioned. As we still have plenty of time left for the project we will soon be adding a function to
-# calculate the determinants of each matrix, as well as the Eigenvalues. We also still need to add functionalities
-# that make the program foolproof in case the user types in something that doesnt make sense.
-# We also need to add a help menue that informs the user about how to correctly use the program.
-# The main program should also be put into a loop so the program doesnt have to be restarted every time
-# someone wants to calculate something
+####################################################################
+##      Important Notes about this version                        ##
+####################################################################
 
-###############################################
-##  Variables                                ##
-###############################################
+# This is the Alpha Version of the programm
+# Unless there are any bugs in this version, it can be considered final
+# some variable names might still change later for better readability
+# some comments are still missing at getUserInput()
+
+
+####################################################################
+##      Variables                                                 ##
+####################################################################
 
 # here are all of the variables that the program needs:
 
@@ -35,14 +34,14 @@ global det_A, det_B, det_C, det_Ans, det_Sol
 
 det_A, det_B, det_C, det_Ans, det_Sol = 0, 0 ,0 ,0, 0
 
-matrix_A = []
-matrix_B = []
-matrix_C = []
-matrix_Ans = []
-matrix_Sol = []   # The Matrices are stored as global Variables so they can be accessed directly inside a Fucntion
+matrix_A = [[0,0,0],[0,0,0],[0,0,0]]
+matrix_B = [[0,0,0],[0,0,0],[0,0,0]]
+matrix_C = [[0,0,0],[0,0,0],[0,0,0]]
+matrix_Ans = [[0,0,0],[0,0,0],[0,0,0]]
+matrix_Sol = [[0,0,0],[0,0,0],[0,0,0]]   # The Matrices are stored as global Variables so they can be accessed directly inside a Fucntion
 
-matrix_Operand_1 = []
-matrix_Operand_2 = []   # those variables are used to temporarily save the Operands
+matrix_Operand_1 = [[0,0,0],[0,0,0],[0,0,0]]
+matrix_Operand_2 = [[0,0,0],[0,0,0],[0,0,0]]  # those variables are used to temporarily save the Operands
 
 global calculated
 global matrix_saved_in
@@ -51,28 +50,30 @@ calculated = ""
 matrix_saved_in = "" # strings used to save the performed calculation and the matrix where the solution goes 
                      # they are used in refreshUI() to show the User what exactly the program did
 
+help_menue = "Template_HelpMenue.txt"
 template = "Template.txt"
-output_file = "Output_File.txt"  # defines the Template and the Outputfile for the UI
+output_file = "Output_File.txt"  # defines the .txt documents that we need for reference and as UI
                                  # they need to be in the same folder as the main python program
 
 
-################################################
-##  UI Refreshing                             ##
-################################################
+####################################################################
+##      UI Refreshing                                             ##
+####################################################################
 
 # here is a function that will print all the matrices, as well as other information out in Output_File.txt
 # it does that by completely overwriting Output_File and uses Template.txt as a reference
 
 def refreshUI():
+
     try:
         with open(template, "r", encoding="utf-8") as template_UI:  # opens Template.txt for reading purposes
             template_content = template_UI.read()                             
     except:                                            
         print(f"Error: '{template}' does not exist")       # Prints error message if file does not exist
-# test
-    for i in range(5):
-        letters = ["a","b","c","z","s"]
-        matrices = [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]
+
+    for i in range(5):                                                      # this for loop is used to autoscale the numbers within the matrices
+        letters = ["a","b","c","z","s"]                                     # it does that by checking how many digits the number has and if its
+        matrices = [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]   # positive or negative
         for j in range (3):
             for k in range (3):
                 matrix_index = f"{letters[i]}{j+1}{k+1}"
@@ -84,7 +85,6 @@ def refreshUI():
                     digits = 2
                 else:
                     digits = 1
-            
                 if matrices[i][j][k] >= 0:
                     if digits != 4:
                         template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f}"))
@@ -100,14 +100,14 @@ def refreshUI():
     # placeholders with the values calculated (placeholders like a11 -> a33, b11 -> b33 etc.)
     # we check how many decimal places the values have and if they are negative, this
     # information is used to autoscale the matrices nicely
-    # this works for numbers up to 9999
+    # this works for numbers from -9999 up to 9999
     
     template_content = template_content.replace("ACTION",calculated)
     template_content = template_content.replace("Svd",matrix_saved_in)  # the performed calculation and matrix_saved_in
                                                                         # are displayed for the user in the UI
     template_content = template_content.replace("DETA",str(det_A))
     template_content = template_content.replace("DETB",str(det_B))
-    template_content = template_content.replace("DETC",str(det_C))
+    template_content = template_content.replace("DETC",str(det_C))      # the determinants are displayed in the UI
     template_content = template_content.replace("DETZ",str(det_Ans))
     template_content = template_content.replace("DETSOL",str(det_Sol))
 
@@ -123,29 +123,22 @@ def refreshUI():
 ####################################################################
 
 # here the actual calculations happens, calculate() checks the operator and correctly instructs
-# either addition(), subtraction() or multiplication() to start
+# either addition(), subtraction(), multiplication(), invert() or transpose() to start
 # those functions will then perform the correct calculation algorithm and overwrite matrix_Sol with the solution
-
 
 def calculate(operand_1,operand_2,operator):   # chooses which function is needed for the operation and execute it
 
     if operator == "*":
         multiplication(operand_1, operand_2)
-
     if operator == "+":
-        addition(operand_1,operand_2)
- 
+        addition(operand_1,operand_2) 
     if operator == "-":
         subtraction(operand_1,operand_2)
-
     if operator == "i":
         invert(operand_1)
-
     if operator == "t":
         transpose(operand_1,matrix_Sol)
     
-
-
 def multiplication(operand_1, operand_2): # multiplication of two matrices
 
     for i in range(3):
@@ -156,24 +149,27 @@ def multiplication(operand_1, operand_2): # multiplication of two matrices
             matrix_Sol[i][j] = matrix_sum   # the Solution is always stored in Matrix_Sol
     
 def addition(operand_1,operand_2):    # addition of two matrices
+
     for i in range(3):
         for j in range(3):
             matrix_Sol[i][j] = operand_1[i][j] + operand_2[i][j]  # the Solution is always stored in Matrix_Sol
 
 def subtraction(operand_1,operand_2): # subtraction of two matrices
+
     for i in range(3):
         for j in range(3):
             matrix_Sol[i][j] = operand_1[i][j] - operand_2[i][j]  # the Solution is always stored in Matrix_Sol
 
 
-def determinant():
+def determinant():   # calculates the determinants of all matrices
+
     det_matrices = [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]
     det = [det_A, det_B, det_C, det_Ans, det_Sol]
     for i in range(5):
         det[i] = det_matrices[i][0][0] * det_matrices[i][1][1] * det_matrices[i][2][2] + det_matrices[i][0][1] * det_matrices[i][1][2] * det_matrices[i][2][0] + det_matrices[i][0][2] * det_matrices[i][1][0] * det_matrices[i][2][1] - det_matrices[i][0][2] * det_matrices[i][1][1] * det_matrices[i][2][0] - det_matrices[i][0][1] * det_matrices[i][1][0] * det_matrices[i][2][2] - det_matrices[i][0][0] * det_matrices[i][1][2] * det_matrices[i][2][1]
-    return det
+    return det   # returns a list that contains the determinant of each matrix
 
-def invert(operand_1):
+def invert(operand_1):    # calculates the inverse of a matrix
 
     if operand_1 == matrix_A:
         determinant_operand = determinant()[0]
@@ -182,8 +178,7 @@ def invert(operand_1):
     elif operand_1 == matrix_C:
         determinant_operand = determinant()[2]
     elif operand_1 == matrix_Ans:
-        determinant_operand = determinant()[3]  
-    
+        determinant_operand = determinant()[3]     
     if determinant_operand != 0:
         matrix_Sol[0][0] = ((operand_1[1][1] * operand_1[2][2]) - (operand_1[1][2] * operand_1[2][1])) / determinant_operand
         matrix_Sol[0][1] = ((operand_1[0][2] * operand_1[2][1]) - (operand_1[0][1] * operand_1[2][2])) / determinant_operand
@@ -197,14 +192,16 @@ def invert(operand_1):
     else:
         print("Error: Matrix is not invertible")
         print("The calculation was canceled!")
+    # the inverse is stored in matrix_Sol
 
-def transpose(matrix_Operand_1,matrix_Sol):
+def transpose(matrix_Operand_1,matrix_Sol):  # transposes the matrix
+
     for i in range(3):
         for j in range(3):
-            matrix_Sol[i][j] = matrix_Operand_1[j][i]
+            matrix_Sol[i][j] = matrix_Operand_1[j][i]  # stores the solution in matrix_Sol
 
 ####################################################################
-##  Matrix input extractor                                        ##
+##      Matrix input extractor                                    ##
 ####################################################################
 
 # here we extract all the matrices that the user typed in
@@ -214,7 +211,6 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
 
     with open(output_file, "r", encoding="utf-8") as user_Interface:
         lines = user_Interface.readlines()    # opens the User interface for reading purposes
-
     matrix = []
 
     if matrixname == "A":
@@ -226,8 +222,7 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
     elif matrixname == "Ans":
         matrix_lines = lines[18:21]  
     elif matrixname == "Sol":
-        matrix_lines = lines[26:29]   # the locations of the Matrices in Output_File is being defined
-        
+        matrix_lines = lines[26:29]   # the locations of the Matrices in Output_File is being defined        
     else:
         print("Error: No such matrix exists")
         return matrix  # return all zeros if the Matrix does not exist
@@ -250,29 +245,55 @@ def getMatrix(matrixname):  # is used to extract the matrices the user typed int
 
     return matrix
 
-############################################
-##    User Input Extractor                ##
-############################################
+####################################################################
+##      User Input Extractor                                      ##
+####################################################################
 
 # here we ask the user what calculation he wants to perform, and return all the needed information as a list
 
 def getUserInput():
+
     userInput = [0,0,0,0]
-    
+
+    global matrix_A
+    global matrix_B   # needs to be specified again because otherwise the matrices are interpreted as local
+    global matrix_C
+    global matrix_Ans
+    global matrix_Sol
+
     status = [False,False,False,False]
     while not all(status):
         if status[1] == False:
             print("Type '?' to open the help menue!")
             userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
-            if userInput[1] not in ["A","B","C","?"]:
-                print("Error: No Operand like this exists")
-            elif userInput[1] == "?":
-                print("Help Menue:")
-                print("Firstly you have to open the Output_File.txt to see the User Interface. There you can add the Matrices you want to calculate with.")
-                print("Possible Operands are A, B and C. As Operators you can choose between + (addition), - (subtraction), * (multiplication), i (inverse), t (transpose)")
-                print("After you have choosen your operation you can choose the point where you want to save the solution. Possible are the Matrices A, B, C and Ans.")
-                reset = input("If have read the Help Menue and want to continue press: Enter")
+            if userInput[1] == "?":
+
+                matrix_A = getMatrix("A")
+                matrix_B = getMatrix("B")
+                matrix_C = getMatrix("C")
+                matrix_Ans = getMatrix("Ans")
+                matrix_Sol = getMatrix("Sol")  
+
+                try:
+                    with open(help_menue, "r", encoding="utf-8") as help_menue_UI:  # opens Template.txt for reading purposes
+                        help_UI = help_menue_UI.read()                            
+                except:                                            
+                    print(f"Error: '{help_menue}' does not exist")
+                
+                try:
+                    with open (output_file,"w",encoding= "utf-8") as help_menue_UI:
+                        help_menue_UI.write(help_UI)
+                except: print(f"Error: ' {output_file} ' does not exist")
+                   
+                input("Press enter to proceed: ")
+
+                refreshUI()
+
                 status = [False,False,False,False]
+                userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
+
+            if userInput[1] not in ["A","B","C"]:
+                print("Error: No Operand like this exists")
             else:
                 status[1] = True
         if status[0] == False:
@@ -299,79 +320,85 @@ def getUserInput():
                 status[3] = True
     return userInput
 
-
-    # this function asks the user about what calculation to perform and returns it a list containing all the
+    # this function asks the user about what calculation to perform and returns a list containing all the
     # needed information
 
-#############################################
-##    Main Programm                        ##
-#############################################
+####################################################################
+##      Main Programm                                             ##
+####################################################################
 
 # This is the main program of the calculator, which makes use of all the defined functions and variables
 
-userInput = getUserInput()  #find out what the user wants to do
-operator = userInput[0]     
-op_1 = userInput[1]
-op_2 = userInput[2]
-saved_in = userInput[3]    # store the instructions in seperate variables
+while True:
 
-matrix_A = getMatrix("A")
-matrix_B = getMatrix("B")
-matrix_C = getMatrix("C")
-matrix_Ans = getMatrix("Ans")
-matrix_Sol = getMatrix("Sol")    # acquire the matrices the user typed in
+    userInput = getUserInput()  # find out what the user wants to do
+    operator = userInput[0]     
+    op_1 = userInput[1]
+    op_2 = userInput[2]
+    saved_in = userInput[3]    # store the instructions in seperate variables
 
-if op_1 == "A":
-    matrix_Operand_1 = matrix_A
-elif op_1 == "B":
-    matrix_Operand_1 = matrix_B
-elif op_1 == "C":
-    matrix_Operand_1 = matrix_C
-elif op_1 == "Ans":
-    matrix_Operand_1 = matrix_Ans
-else:
-    matrix_Operand_1 = matrix_A
+    refreshUI()  # if the user has opened the help menue before (inside getUserInput())
+                 # refresh the UI to reset it to its original state before the help menue was opened
 
-if op_2 == "A":
-    matrix_Operand_2 = matrix_A
-elif op_2 == "B":
-    matrix_Operand_2 = matrix_B
-elif op_2 == "C":
-    matrix_Operand_2 = matrix_C
-elif op_2 == "Ans":
-    matrix_Operand_2 = matrix_Ans
-else:
-    matrix_Operand_2 = matrix_B    # assigned the two operands correctly
+    matrix_A = getMatrix("A")
+    matrix_B = getMatrix("B")
+    matrix_C = getMatrix("C")
+    matrix_Ans = getMatrix("Ans")
+    matrix_Sol = getMatrix("Sol")    # acquire the matrices the user typed in
 
-calculate(matrix_Operand_1,matrix_Operand_2,operator)  # perform the calculation by giving the calculate function 
-                                                       # the two operands ant the operator
-                                                      
-if saved_in == "A":
-    matrix_A = matrix_Sol
-elif saved_in == "B":
-    matrix_B = matrix_Sol
-elif saved_in == "C":
-    matrix_C = matrix_Sol
-else:
-    matrix_Ans = matrix_Sol     # copy the solution (always stored in matrix_Solution) into the matrix the user defined
-                                # if the user didnt specify the matrix where the solution goes, matrix_Ans will 
-                                # be used by default
+    if op_1 == "A":
+        matrix_Operand_1 = matrix_A
+    elif op_1 == "B":
+        matrix_Operand_1 = matrix_B
+    elif op_1 == "C":
+        matrix_Operand_1 = matrix_C
+    elif op_1 == "Ans":
+        matrix_Operand_1 = matrix_Ans
+    else:
+        matrix_Operand_1 = matrix_A
 
-det_A = determinant()[0]
-det_B = determinant()[1]
-det_C = determinant()[2]
-det_Ans = determinant()[3]
-det_Sol = determinant()[4]
+    if op_2 == "A":
+        matrix_Operand_2 = matrix_A
+    elif op_2 == "B":
+        matrix_Operand_2 = matrix_B
+    elif op_2 == "C":
+        matrix_Operand_2 = matrix_C
+    elif op_2 == "Ans":
+        matrix_Operand_2 = matrix_Ans
+    else:
+        matrix_Operand_2 = matrix_B    # assigned the two operands correctly
 
-if operator not in ["i", "t"]:
-    calculated = op_1 + " " + operator + " " + op_2
-    matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
-                              # where the solution has been saved
-elif operator == "i":
-    calculated = "inverse(" + op_1 + ")"
-    matrix_saved_in = saved_in
-elif operator == "t":
-    calculated = "transpose(" + op_1 + ")"
-    matrix_saved_in = saved_in
+    calculate(matrix_Operand_1,matrix_Operand_2,operator)  # perform the calculation by giving the calculate function 
+                                                           # the two operands and the operator
+                                                        
+    if saved_in == "A":
+        matrix_A = matrix_Sol
+    elif saved_in == "B":
+        matrix_B = matrix_Sol
+    elif saved_in == "C":
+        matrix_C = matrix_Sol
+    else:
+        matrix_Ans = matrix_Sol
+        saved_in = "Ans"            # copy the solution (always stored in matrix_Solution) into the matrix the user defined
+                                    # if the user didnt specify the matrix where the solution goes, matrix_Ans will 
+                                    # be used by default
 
-refreshUI()   # as the last step of the program everything will be displayed  for the user in Output_File.txt
+    det_A = determinant()[0]
+    det_B = determinant()[1]
+    det_C = determinant()[2]
+    det_Ans = determinant()[3]
+    det_Sol = determinant()[4]
+
+    if operator not in ["i", "t"]:
+        calculated = op_1 + " " + operator + " " + op_2
+        matrix_saved_in = saved_in    # update the variables to show the user the calculation performed and 
+                                      # where the solution has been saved
+    elif operator == "i":
+        calculated = "inverse(" + op_1 + ")"
+        matrix_saved_in = saved_in
+    elif operator == "t":
+        calculated = "transpose(" + op_1 + ")"
+        matrix_saved_in = saved_in
+
+    refreshUI()   # as the last step of the program everything will be displayed  for the user in Output_File.txt
+    print("Operation completed!")
