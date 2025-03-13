@@ -85,11 +85,18 @@ def refreshUI():
                     digits = 2
                 else:
                     digits = 1
-                if matrices[i][j][k] >= 0:
+                if matrices[i][j][k] > 0:
                     if digits != 4:
                         template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f}"))
                     else:
-                        template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f} "))                    
+                        template_content = template_content.replace(matrix_index, str(f" {matrices[i][j][k]:.{4-digits}f} "))
+
+                elif matrices[i][j][k] == -0.0:
+                    if digits != 4:
+                        template_content = template_content.replace(matrix_index, str(f" {abs(matrices[i][j][k]):.{4-digits}f}"))
+                    else:
+                        template_content = template_content.replace(matrix_index, str(f" {abs(matrices[i][j][k]):.{4-digits}f} "))                    
+
                 else:
                     if digits != 4:     
                         template_content = template_content.replace(matrix_index, str(f"{matrices[i][j][k]:.{4-digits}f}"))
@@ -105,11 +112,11 @@ def refreshUI():
     template_content = template_content.replace("ACTION",calculated)
     template_content = template_content.replace("Svd",matrix_saved_in)  # the performed calculation and matrix_saved_in
                                                                         # are displayed for the user in the UI
-    template_content = template_content.replace("DETA",str(det_A))
-    template_content = template_content.replace("DETB",str(det_B))
-    template_content = template_content.replace("DETC",str(det_C))      # the determinants are displayed in the UI
-    template_content = template_content.replace("DETZ",str(det_Ans))
-    template_content = template_content.replace("DETSOL",str(det_Sol))
+    template_content = template_content.replace("DETA",str(f"{det_A:8f}"))
+    template_content = template_content.replace("DETB",str(f"{det_B:.8f}"))
+    template_content = template_content.replace("DETC",str(f"{det_C:.8f}"))      # the determinants are displayed in the UI
+    template_content = template_content.replace("DETZ",str(f"{det_Ans:.8f}"))
+    template_content = template_content.replace("DETSOL",str(f"{det_Sol:.8f}"))
 
     try:
         with open (output_file,"w",encoding= "utf-8") as refreshed_UI:
@@ -288,6 +295,8 @@ def getUserInput():
                 input("Press enter to proceed: ")
 
                 refreshUI()
+                # if the user has opened the help menue before (inside getUserInput())
+                # refresh the UI to reset it to its original state before the help menue was opened
 
                 status = [False,False,False,False]
                 userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
@@ -336,9 +345,6 @@ while True:
     op_1 = userInput[1]
     op_2 = userInput[2]
     saved_in = userInput[3]    # store the instructions in seperate variables
-
-    refreshUI()  # if the user has opened the help menue before (inside getUserInput())
-                 # refresh the UI to reset it to its original state before the help menue was opened
 
     matrix_A = getMatrix("A")
     matrix_B = getMatrix("B")

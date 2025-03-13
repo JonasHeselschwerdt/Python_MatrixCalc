@@ -1,0 +1,33 @@
+### Python Matrix Calculator ###
+
+### To get started type a command into the console, to open the help menue type "?" ###
+
+~ Saved Matrices ~
+
+    (  a11   |  a12   |  a13   ) 
+A = (  a21   |  a22   |  a23   )       | det(A) = DETA
+    (  a31   |  a32   |  a33   )
+
+    (  b11   |  b12   |  b13   ) 
+B = (  b21   |  b22   |  b23   )       | det(B) = DETB
+    (  b31   |  b32   |  b33   )
+
+    (  c11   |  c12   |  c13   ) 
+C = (  c21   |  c22   |  c23   )       | det(C) = DETC
+    (  c31   |  c32   |  c33   )
+
+      (  z11   |  z12   |  z13   ) 
+Ans = (  z21   |  z22   |  z23   )     | det(Ans) = DETZ
+      (  z31   |  z32   |  z33   )
+
+~ Calculations ~
+
+Performed Action: ACTION
+
+      (  s11   |  s12   |  s13   ) 
+Sol = (  s21   |  s22   |  s23   )     | det(Sol) = DETSOL
+      (  s31   |  s32   |  s33   )
+
+Saved Solution into: Svd
+
+### Python Matrix Calculator ###
