@@ -12,7 +12,7 @@
 1. Getting started
 
 Make sure Matrix_Calculator.py, Output_File.txt, Template.txt and Template_HelpMenue are in the same folder!
-If you accidentaly deleted any of the files you can download them from Github: - Link to repository -
+If you accidentaly deleted any of the files you can download them from Github: https://github.com/JonasHeselschwerdt/Python_MatrixCalc
 If you have made sure they exist and are in the same folder you can start Matrix_Calculator.py and open
 Output_File.txt (we recommend VSCode for that). For the best experience open both Matrix_Calculator.py and Output_File.txt
 in Split-Screen-view.

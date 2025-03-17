@@ -1,2 +1,35 @@
 # Python_MatrixCalc
 A simple text based Calculator Tool for Matrices written in Python. Created by Moritz Wagner and Jonas Heselschwerdt 
+
+### How to use the matrix calculator ###
+
+1. Getting started
+
+Make sure Matrix_Calculator.py, Output_File.txt, Template.txt and Template_HelpMenue are in the same folder!
+If you accidentaly deleted any of the files you can download them from Github: (https://github.com/JonasHeselschwerdt/Python_MatrixCalc)
+If you have made sure they exist and are in the same folder you can start Matrix_Calculator.py and open
+Output_File.txt (we recommend VSCode for that). For the best experience open both Matrix_Calculator.py and Output_File.txt
+in Split-Screen-view.
+
+2. Typing in Matrices
+
+Now you can start typing in your matrices, they can have as many digits / decimal places as you want,
+however the autoscaling only works from -9999 up to 9999. When you are done don't forget to save! (Tip: Double clicking a 
+Matrix Index like "a11" will allow you to quickly overwrite it)
+
+3. Performing Calculations
+
+After starting the program the console will have asked you about your desired first operand.
+You can type "A","B","C" or "Ans". After pressing enter you will be asked about the operator you want to
+use, here you can choose between "+" for addition, "-" for subtraction, "*" for multiplication, "t" to transpose
+or "i" for inverting. Now press enter. If you chose "+", "-" or "*" you will now need to type in the second operand
+(exactly like before). Press enter. Now you can type in the Matrix where the solution will be stored in, by default Ans will
+be used for that. If you chose "i" or "t" as operator there is no need to type in a second operand, you will just be 
+asked where you want to store the solution. Now press enter to start the calculation.
+
+4. Repeat
+
+Now Output_File.txt will change automatically, it will display you the performed calculation, where
+the solution has been saved, and all the new matrices, as well as their determinants.
+The console of Matrix_Calculator.py will now ask you again about your first operand. You can now make changes 
+to your matrices and continue doing calculations or keep doing calculations without any changes to your matrices.
