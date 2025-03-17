@@ -12,11 +12,7 @@
 ##      Important Notes about this version                        ##
 ####################################################################
 
-# This is the Alpha Version of the programm
-# Unless there are any bugs in this version, it can be considered final
-# some variable names might still change later for better readability
-# some comments are still missing at getUserInput()
-
+# This is the final version of our program! 
 
 ####################################################################
 ##      Variables                                                 ##
@@ -270,12 +266,12 @@ def getUserInput():
 
     status = [False,False,False,False]      # saves the status of the input
     while not all(status):
-        if status[1] == False:  # asks the user after his first Operand, it is also possible to open the Help Menue
+        if status[1] == False:  # asks the user about his desired first Operand, it is also possible to open the Help Menue
             print("Type '?' to open the help menue!")   
             userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
             if userInput[1] == "?":    # starts the  opening of the Help Menue
 
-                matrix_A = getMatrix("A")    # reades the actual content of the matrixces, before it is overwritten by the Help Menue
+                matrix_A = getMatrix("A")    # reads the current content of the matrices, before it will be overwritten by the Help Menue
                 matrix_B = getMatrix("B")
                 matrix_C = getMatrix("C")
                 matrix_Ans = getMatrix("Ans")
@@ -288,39 +284,37 @@ def getUserInput():
                     print(f"Error: '{help_menue}' does not exist")
                 
                 try:                                                            
-                    with open (output_file,"w",encoding= "utf-8") as help_menue_UI:   # overwrites in the Output_File.txt the UserUI and shows the Help Menue in it
+                    with open (output_file,"w",encoding= "utf-8") as help_menue_UI:   # overwrites the UserUI and shows the Help Menue
                         help_menue_UI.write(help_UI)
                 except: print(f"Error: ' {output_file} ' does not exist")
                    
                 input("Press enter to proceed: ")
 
-                refreshUI()
-                # if the user has opened the help menue before (inside getUserInput())
-                # refresh the UI to reset it to its original state before the help menue was opened
+                refreshUI() # do refreshUI() to get back to the original state of the UI
 
-                status = [False,False,False,False]     # clears the actuall user input and let him choose again
+                status = [False,False,False,False]     # clears the current user input and lets the user choose again
                 userInput[1] = input("What is the first Operand? You can choose between A, B, C: ")
 
             if userInput[1] not in ["A","B","C"]:    # checks if the input is the expexted input 
                 print("Error: No Operand like this exists")
             else:
                 status[1] = True
-        if status[0] == False:    # ask for the Operator and checks if the input is the expexted
+        if status[0] == False:    # asks for the Operator and checks if the input is the expexted
             userInput[0] = input("Which Operator do you want to use? You can choose between +, -, *, i and t: ")
             if userInput[0] not in ["+","-","*","i","t"]:
                 print("Error: No Operator like this exists")
             elif userInput[0] in ["i","t"]:     # for inverse and transpose only one matrix is needed
                     status[0] = True
-                    status[2] = True     # after the second opperand is not asked
+                    status[2] = True     # in this case the second operand is not asked
             else:
                 status[0] = True
-        if status[2] == False:     # ask for the Operand and checks if the input is the expexted
+        if status[2] == False:     # asks for the Operand and checks if the input is the expexted
             userInput[2] = input("What is the second Operand? You can choose between A, B, C: ")
             if userInput[2] not in ["A","B","C"]:    
                 print("Error: No Operand like this exists")
             else:
                 status[2] = True
-        if status[3] == False:     # ask for the place for the solution and checks if the input is the expexted
+        if status[3] == False:     # asks for the place for the solution and checks if the input is the expexted
             userInput[3] = input("Where do you want to save the solution? You can choose between A, B, C, Ans: ")
             if userInput[3] not in ["A","B","C","Ans",""]:
                 print("Error: No Operand like this exists")

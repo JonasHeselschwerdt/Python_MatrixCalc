@@ -20,8 +20,8 @@ in Split-Screen-view.
 2. Typing in Matrices
 
 Now you can start typing in your matrices, they can have as many digits / decimal places as you want,
-however the autoscaling only works from -9999 up to 9999. (Tip: Double clicking a Matrix Index like 
-"a11" will allow you to quickly overwrite it)
+however the autoscaling only works from -9999 up to 9999. When you are done don't forget to save! (Tip: Double clicking a 
+Matrix Index like "a11" will allow you to quickly overwrite it)
 
 3. Performing Calculations
 
