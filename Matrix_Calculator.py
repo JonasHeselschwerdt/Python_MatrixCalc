@@ -130,17 +130,18 @@ def refreshUI():
 # those functions will then perform the correct calculation algorithm and overwrite matrix_Sol with the solution
 
 def calculate(operand_1,operand_2,operator):   # chooses which function is needed for the operation and execute it
-
     if operator == "*":
         multiplication(operand_1, operand_2)
-    if operator == "+":
+    elif operator == "+":
         addition(operand_1,operand_2) 
-    if operator == "-":
+    elif operator == "-":
         subtraction(operand_1,operand_2)
-    if operator == "i":
+    elif operator == "i":
         invert(operand_1)
-    if operator == "t":
+    elif operator == "t":
         transpose(operand_1,matrix_Sol)
+    else:
+        print("Error: No such Operator exists") # not possible to achive this error, placed for safty here
     
 def multiplication(operand_1, operand_2): # multiplication of two matrices
 
