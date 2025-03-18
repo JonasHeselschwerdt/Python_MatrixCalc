@@ -140,8 +140,6 @@ def calculate(operand_1,operand_2,operator):   # chooses which function is neede
         invert(operand_1)
     elif operator == "t":
         transpose(operand_1,matrix_Sol)
-    else:
-        print("Error: No such Operator exists") # not possible to achive this error, placed for safty here
     
 def multiplication(operand_1, operand_2): # multiplication of two matrices
 
