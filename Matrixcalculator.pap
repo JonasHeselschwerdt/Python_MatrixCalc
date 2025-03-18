@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="2497D8BEA91FB842">
-  <PROJECT FORMAT="1.00" NAME="Matrixcalculator" AUTHOR="Moritz Wagner" CREATED="2025.03.17 10:09:10" MODIFIED="2025.03.18 15:18:11">
+<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="64775562B948D1E2">
+  <PROJECT FORMAT="1.00" NAME="Matrixcalculator" AUTHOR="Moritz Wagner" CREATED="2025.03.17 10:09:10" MODIFIED="2025.03.18 19:04:35">
     <DIAGRAMS>
       <DIAGRAM FORMAT="1.00" ID="0" NAME="Hauptprogramm 1" CREATED="2025.03.17 10:10:12" MODIFIED="2025.03.18 15:18:11">
         <LAYOUT FORMAT="1.00" COLUMNS="6" ROWS="37">
@@ -462,7 +462,7 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
           <CONNECTION FORMAT="1.00" ID="175" FROM="174" TO="176" TEXT="" />
         </CONNECTIONS>
       </DIAGRAM>
-      <DIAGRAM FORMAT="1.00" ID="1" NAME="Auslesen der zu tätigen Operation" CREATED="2025.03.17 10:17:38" MODIFIED="2025.03.17 10:17:38">
+      <DIAGRAM FORMAT="1.00" ID="1" NAME="Auslesen der zu tätigen Operation" CREATED="2025.03.17 10:17:38" MODIFIED="2025.03.18 19:04:35">
         <LAYOUT FORMAT="1.00" COLUMNS="4" ROWS="39">
           <ENTRIES>
             <ENTRY COLUMN="0" ROW="0" ANCHOR="True">
@@ -508,6 +508,11 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
             <ENTRY COLUMN="0" ROW="29">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="172">
                 <TEXT><![CDATA[status[2] == False]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="32">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="255">
+                <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="0" ROW="33">
@@ -598,6 +603,11 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
             <ENTRY COLUMN="1" ROW="31">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="178">
                 <TEXT><![CDATA[status[2] = True]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="32">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="258">
+                <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="1" ROW="33">
@@ -837,7 +847,7 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
           <CONNECTION FORMAT="1.00" ID="165" FROM="129" TO="164" TEXT="ja" />
           <CONNECTION FORMAT="1.00" ID="142" FROM="129" TO="166" TEXT="nein" />
           <CONNECTION FORMAT="1.00" ID="184" FROM="172" TO="173" TEXT="ja" />
-          <CONNECTION FORMAT="1.00" ID="197" FROM="172" TO="235" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="256" FROM="255" TO="235" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="217" FROM="214" TO="216" TEXT="ja" />
           <CONNECTION FORMAT="1.00" ID="234" FROM="175" TO="181" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="218" FROM="216" TO="175" TEXT="" />
@@ -860,6 +870,10 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
           <CONNECTION FORMAT="1.00" ID="253" FROM="252" TO="249" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="251" FROM="241" TO="252" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="254" FROM="238" TO="252" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="197" FROM="172" TO="255" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="257" FROM="181" TO="258" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="259" FROM="258" TO="255" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="260" FROM="178" TO="258" TEXT="" />
         </CONNECTIONS>
       </DIAGRAM>
       <DIAGRAM FORMAT="1.00" ID="2" NAME="Matrix auslesen" CREATED="2025.03.17 10:33:51" MODIFIED="2025.03.17 10:33:51">
@@ -1089,8 +1103,8 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
           <CONNECTION FORMAT="1.00" ID="76" FROM="75" TO="2" TEXT="" />
         </CONNECTIONS>
       </DIAGRAM>
-      <DIAGRAM FORMAT="1.00" ID="3" NAME="Interface erneuern" CREATED="2025.03.17 11:04:27" MODIFIED="2025.03.17 11:04:27">
-        <LAYOUT FORMAT="1.00" COLUMNS="8" ROWS="32">
+      <DIAGRAM FORMAT="1.00" ID="3" NAME="Interface erneuern" CREATED="2025.03.17 11:04:27" MODIFIED="2025.03.18 19:04:35">
+        <LAYOUT FORMAT="1.00" COLUMNS="9" ROWS="33">
           <ENTRIES>
             <ENTRY COLUMN="0" ROW="0" ANCHOR="True">
               <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
@@ -1113,241 +1127,256 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="0" ROW="4">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="162">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="5">
               <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="12" ASSOCIATE="14">
                 <TEXT><![CDATA[for i in range(5)]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="5">
+            <ENTRY COLUMN="0" ROW="6">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="16">
                 <TEXT><![CDATA[letters = ["a", "b", "c", "z", "s"]]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="6">
+            <ENTRY COLUMN="0" ROW="7">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="18">
                 <TEXT><![CDATA[matrices= [matrix_A, matrix_B, matrix_C, matrix_Ans, matrix_Sol]]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="7">
+            <ENTRY COLUMN="0" ROW="8">
               <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="20" ASSOCIATE="22">
                 <TEXT><![CDATA[for j in range(3)]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="8">
+            <ENTRY COLUMN="0" ROW="9">
               <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="32" ASSOCIATE="33">
                 <TEXT><![CDATA[for k in range(3)]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="9">
+            <ENTRY COLUMN="0" ROW="10">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="36">
                 <TEXT><![CDATA[matrix_index = letters[i] + (j+1) + (k+1)]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="10">
+            <ENTRY COLUMN="0" ROW="11">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="38">
                 <TEXT><![CDATA[if matrices[i][j][k] >= 1000]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="11">
+            <ENTRY COLUMN="0" ROW="12">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="44">
                 <TEXT><![CDATA[if matrices[i][j][k] >= 100]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="12">
+            <ENTRY COLUMN="0" ROW="13">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="50">
                 <TEXT><![CDATA[if matrices[i][j][k] >= 10]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="13">
+            <ENTRY COLUMN="0" ROW="14">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="69">
                 <TEXT><![CDATA[digits = 1]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="14">
+            <ENTRY COLUMN="0" ROW="15">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="56">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="15">
+            <ENTRY COLUMN="0" ROW="16">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="71">
                 <TEXT><![CDATA[if matrices[i][j][k] > 0]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="18">
+            <ENTRY COLUMN="0" ROW="19">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="82">
                 <TEXT><![CDATA[if matrices[i][j][k] == -0.0]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="21">
+            <ENTRY COLUMN="0" ROW="22">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="112">
                 <TEXT><![CDATA[if digits != 4]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="22">
+            <ENTRY COLUMN="0" ROW="23">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="113">
                 <TEXT><![CDATA[formatiert und setzt die Zahl in ihre Position mit einem zusätzliche Leerzeichen zur Formatierung ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="23">
+            <ENTRY COLUMN="0" ROW="24">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="126">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="24">
+            <ENTRY COLUMN="0" ROW="25">
               <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="33" ASSOCIATE="32">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="25">
+            <ENTRY COLUMN="0" ROW="26">
               <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="22" ASSOCIATE="20">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="26">
+            <ENTRY COLUMN="0" ROW="27">
               <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="14" ASSOCIATE="12">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="27">
+            <ENTRY COLUMN="0" ROW="28">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="132">
                 <TEXT><![CDATA[Überschreibung der alten mit den neuen Werten und trägt die die Determinante ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="28">
+            <ENTRY COLUMN="0" ROW="29">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="134">
                 <TEXT><![CDATA[try]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="29">
+            <ENTRY COLUMN="0" ROW="30">
               <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="140">
                 <TEXT><![CDATA[Datei Output:File.txt existiert nicht]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="30">
+            <ENTRY COLUMN="0" ROW="31">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="146">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="0" ROW="31">
+            <ENTRY COLUMN="0" ROW="32">
               <FIGURE SUBTYPE="PapEnd" FORMAT="1.00" ID="2">
                 <TEXT><![CDATA[Ende]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="1" ROW="28">
-              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="136">
+            <ENTRY COLUMN="1" ROW="29">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="151">
                 <TEXT><![CDATA[Überschreibung der aktuellen Daten in der Output_File.txt Datei mit den neuen Werten nach der Berechnung]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="1" ROW="30">
+            <ENTRY COLUMN="1" ROW="31">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="144">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="21">
+            <ENTRY COLUMN="2" ROW="22">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="114">
                 <TEXT><![CDATA[formatiert und setzt die Zahl in ihre Position ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="23">
+            <ENTRY COLUMN="2" ROW="24">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="129">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="3" ROW="18">
+            <ENTRY COLUMN="3" ROW="19">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="83">
                 <TEXT><![CDATA[if digits != 4]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="3" ROW="19">
+            <ENTRY COLUMN="3" ROW="20">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="84">
                 <TEXT><![CDATA[formatiert so, dass das Vorzeichen verschwindet und setzt die Zahl in ihre Position mit einem zusätzliche Leerzeichen zur Formatierung ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="3" ROW="20">
+            <ENTRY COLUMN="3" ROW="21">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="99">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="4" ROW="15">
+            <ENTRY COLUMN="4" ROW="16">
               <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="77">
                 <TEXT><![CDATA[if digits != 4]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="4" ROW="16">
+            <ENTRY COLUMN="4" ROW="17">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="80">
                 <TEXT><![CDATA[formatiert und setzt die Zahl in ihre Position mit einem zusätzliche Leerzeichen zur Formatierung ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="4" ROW="17">
+            <ENTRY COLUMN="4" ROW="18">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="96">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="4" ROW="18">
+            <ENTRY COLUMN="4" ROW="19">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="85">
                 <TEXT><![CDATA[formatiert so, dass das Vorzeichen verschwindet und setzt die Zahl in ihre Position ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="4" ROW="20">
+            <ENTRY COLUMN="4" ROW="21">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="106">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="5" ROW="15">
+            <ENTRY COLUMN="5" ROW="16">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="78">
                 <TEXT><![CDATA[formatiert und setzt die Zahl in ihre Position ein]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="5" ROW="17">
+            <ENTRY COLUMN="5" ROW="18">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="90">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="5" ROW="20">
+            <ENTRY COLUMN="5" ROW="21">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="109">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="5" ROW="23">
+            <ENTRY COLUMN="5" ROW="24">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="123">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="6" ROW="2">
-              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="8">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="150">
                 <TEXT><![CDATA[öffnen und auslesen der Datei Template.txt]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="6" ROW="10">
+            <ENTRY COLUMN="6" ROW="11">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="42">
                 <TEXT><![CDATA[digits = 4]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="6" ROW="11">
+            <ENTRY COLUMN="6" ROW="12">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="46">
                 <TEXT><![CDATA[digits = 3]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="6" ROW="12">
+            <ENTRY COLUMN="6" ROW="13">
               <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="52">
                 <TEXT><![CDATA[digits = 2]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="7" ROW="10">
+            <ENTRY COLUMN="7" ROW="2">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="159">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="7" ROW="4">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="157">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="8" ROW="11">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="62">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="7" ROW="11">
+            <ENTRY COLUMN="8" ROW="12">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="60">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="7" ROW="12">
+            <ENTRY COLUMN="8" ROW="13">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="58">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="7" ROW="14">
+            <ENTRY COLUMN="8" ROW="15">
               <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="66">
                 <TEXT><![CDATA[]]></TEXT>
               </FIGURE>
@@ -1356,8 +1385,8 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
         </LAYOUT>
         <CONNECTIONS>
           <CONNECTION FORMAT="1.00" ID="3" FROM="1" TO="6" TEXT="" />
-          <CONNECTION FORMAT="1.00" ID="11" FROM="7" TO="12" TEXT="" />
-          <CONNECTION FORMAT="1.00" ID="9" FROM="6" TO="8" TEXT="geht" />
+          <CONNECTION FORMAT="1.00" ID="163" FROM="162" TO="12" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="9" FROM="6" TO="150" TEXT="geht" />
           <CONNECTION FORMAT="1.00" ID="10" FROM="6" TO="7" TEXT="geht nicht" />
           <CONNECTION FORMAT="1.00" ID="15" FROM="14" TO="132" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="13" FROM="12" TO="16" TEXT="" />
@@ -1409,11 +1438,15 @@ importieren von matrix_Operand_1, matrix_Operand_2, operator]]></TEXT>
           <CONNECTION FORMAT="1.00" ID="131" FROM="114" TO="129" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="133" FROM="132" TO="134" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="147" FROM="146" TO="2" TEXT="" />
-          <CONNECTION FORMAT="1.00" ID="137" FROM="134" TO="136" TEXT="geht" />
+          <CONNECTION FORMAT="1.00" ID="149" FROM="151" TO="144" TEXT="" />
           <CONNECTION FORMAT="1.00" ID="135" FROM="134" TO="140" TEXT="geht nicht" />
           <CONNECTION FORMAT="1.00" ID="139" FROM="140" TO="146" TEXT="" />
-          <CONNECTION FORMAT="1.00" ID="149" FROM="136" TO="144" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="137" FROM="134" TO="151" TEXT="geht" />
           <CONNECTION FORMAT="1.00" ID="148" FROM="144" TO="146" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="160" FROM="150" TO="159" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="11" FROM="7" TO="162" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="161" FROM="159" TO="157" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="164" FROM="157" TO="162" TEXT="" />
         </CONNECTIONS>
       </DIAGRAM>
       <DIAGRAM FORMAT="1.00" ID="4" NAME="Berechnung" CREATED="2025.03.18 12:10:24" MODIFIED="2025.03.18 12:10:24">
